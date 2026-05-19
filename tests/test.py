@@ -77,3 +77,69 @@ async def pc_send_SE0_signal(dut):
   await Timer(1, unit='ns');
 
   assert dut.tp_usb_init.value == 0
+
+async def PC_DP_LOW_during_12MHZ_cycle(dut):
+  dut.kb_dp_in.value = 0;
+  dut.kb_dm_in.value = 1;
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+async def PC_DP_HIGH_during_12MHZ_cycle(dut):
+  dut.kb_dp_in.value = 1;
+  dut.kb_dm_in.value = 0;
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+  dut.clk.value = '1';
+  await Timer(1, unit='ns');
+  dut.clk.value = '0';
+  await Timer(1, unit='ns');
+
+async def PC_transmit_SYNC(dut):
+  await PC_DP_LOW_during_12MHZ_cycle(dut);
+  await PC_DP_LOW_during_12MHZ_cycle(dut);
+  await PC_DP_LOW_during_12MHZ_cycle(dut);
+  await PC_DP_LOW_during_12MHZ_cycle(dut);
+  await PC_DP_LOW_during_12MHZ_cycle(dut);
+  await PC_DP_LOW_during_12MHZ_cycle(dut);
+  await PC_DP_LOW_during_12MHZ_cycle(dut);
+  await PC_DP_HIGH_during_12MHZ_cycle(dut);
+
+@cocotb.test()
+async def pc_send_SYNC_signal(dut):
+  await inital_reset(dut);
+
+  await PC_transmit_SYNC(dut);
+
+  assert dut.tp_usb_init.value == 1

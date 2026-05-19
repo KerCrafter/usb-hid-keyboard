@@ -2,6 +2,7 @@
 
 module usb_hid_keyboard (
     input  wire clk,
+    input  wire clk_locked,
     input  wire reset,
     input wire kb_dp_in,
     input wire kb_dm_in,
