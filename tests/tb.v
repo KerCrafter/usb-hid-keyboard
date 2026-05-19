@@ -14,12 +14,14 @@ module tb ();
   wire reset;
   wire kb_dp;
   wire kb_dm;
+  wire tp_usb_init;
 
   usb_hid_keyboard u_usb_hid_keyboard (
       .clk  (clk),
       .reset  (reset),
       .kb_dp (kb_dp),
-      .kb_dm (kb_dm)
+      .kb_dm (kb_dm),
+      .tp_usb_init (tp_usb_init)
   );
 
 endmodule
