@@ -21,4 +21,6 @@ async def inital_reset(dut):
 
 @cocotb.test()
 async def init_test(dut):
-  pass
+  await inital_reset(dut);
+
+  assert dut.tp_usb_init.value == 1
