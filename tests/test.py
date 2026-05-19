@@ -142,4 +142,4 @@ async def pc_send_SYNC_signal(dut):
 
   await PC_transmit_SYNC(dut);
 
-  assert dut.tp_usb_init.value == 1
+  assert dut.tp_sync_detected.value == 1

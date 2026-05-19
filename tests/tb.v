@@ -19,6 +19,7 @@ module tb ();
   wire kb_dm_in;
   wire kb_dm_out;
   wire tp_usb_init;
+  wire tp_sync_detected;
 
   usb_hid_keyboard u_usb_hid_keyboard (
       .clk  (clk),
@@ -29,7 +30,8 @@ module tb ();
       .kb_dm_oe (kb_dm_oe),
       .kb_dm_in (kb_dm_in),
       .kb_dm_out (kb_dm_out),
-      .tp_usb_init (tp_usb_init)
+      .tp_usb_init (tp_usb_init),
+      .tp_sync_detected(tp_sync_detected)
   );
 
 endmodule
