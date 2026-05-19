@@ -12,15 +12,23 @@ module tb ();
 
   wire clk;
   wire reset;
-  wire kb_dp;
-  wire kb_dm;
+  wire kb_dp_oe;
+  wire kb_dp_in;
+  wire kb_dp_out;
+  wire kb_dm_oe;
+  wire kb_dm_in;
+  wire kb_dm_out;
   wire tp_usb_init;
 
   usb_hid_keyboard u_usb_hid_keyboard (
       .clk  (clk),
       .reset  (reset),
-      .kb_dp (kb_dp),
-      .kb_dm (kb_dm),
+      .kb_dp_oe (kb_dp_oe),
+      .kb_dp_in (kb_dp_in),
+      .kb_dp_out (kb_dp_out),
+      .kb_dm_oe (kb_dm_oe),
+      .kb_dm_in (kb_dm_in),
+      .kb_dm_out (kb_dm_out),
       .tp_usb_init (tp_usb_init)
   );
 
